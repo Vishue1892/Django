@@ -6,11 +6,11 @@ body{
     height: 100vh;
     display: grid;
     place-items: center;
+    background-color: pink;
 }
 .container{
     width: 90%;
     text-align: center;
-    background-color: aqua;
 }
 ul li{
     list-style: none;

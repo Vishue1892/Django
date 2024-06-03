@@ -10,5 +10,41 @@
     {% endfor %}
 </ul>
 <hr>
+<div style="width: 400px; height 400px; padding: 20px; margin: 50px auto; box-shadow: 0px 0px 30px black;">
+    <canvas id="vote-graph"></canvas>
+</div>
+<script>
+    const ctx = document.getElementById('vote-graph').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for c in question.choice_set.all %}"{{ c.choice_text }}",{% endfor %}],
+            datasets: [{
+                label: 'Votos',
+                data: [{% for c in question.choice_set.all %}{{ c.votes }},{% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    // Add more colors as needed
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    // Add more colors as needed
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 <a href="{% url 'poll:home' %}">Encuestas</a>
 {% endblock %}

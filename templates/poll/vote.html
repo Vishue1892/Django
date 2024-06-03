@@ -3,6 +3,14 @@
 {% block content %}
 <h1>{{ question.question_text }}</h1>
 
+{% if error_message %}
+<div class="alert">
+    <p> {{ error_message }}
+</div>
+    
+{% endif %}
+    
+
     <h2>Elige bien</h2>
     {% for c in question.choice_set.all %}
     {% endfor %}
